@@ -22,7 +22,6 @@ function periodType(dt) {
       return Math.ceil(dt.timeToElapse / 3) * 30;
     default:
       return 'NIL';
-      
   }
 }
 const covid19ImpactEstimator = (data) => {
@@ -33,7 +32,7 @@ const covid19ImpactEstimator = (data) => {
   return {
     data, // the input data you got
     impact, // your best case estimation
-    severeImpact // your severe case estimation 
+    severeImpact // your severe case estimation
   };
 };
 
