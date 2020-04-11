@@ -3,13 +3,13 @@ const data = {
     name: 'Africa',
     avgAge: 19.7,
     avgDailyIncomeInUSD: 5,
-    avgDailyIncomePopulation: 0.71,
+    avgDailyIncomePopulation: 0.71
   },
   periodType: 'days',
   timeToElapse: 19.7,
   reportedCases: 674,
   population: 66622705,
-  totalHospitalBeds: 1380614,
+  totalHospitalBeds: 1380614
 };
 
 function periodType(data) {
@@ -36,4 +36,6 @@ const covid19ImpactEstimator = (data) => {
     severeImpact // your severe case estimation 
   };
 };
+
+covid19ImpactEstimator(data);
 export default covid19ImpactEstimator;
