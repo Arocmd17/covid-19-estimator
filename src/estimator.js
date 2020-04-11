@@ -1,16 +1,4 @@
-const data = {
-  region: {
-    name: 'Africa',
-    avgAge: 19.7,
-    avgDailyIncomeInUSD: 5,
-    avgDailyIncomePopulation: 0.71
-  },
-  periodType: 'days',
-  timeToElapse: 19.7,
-  reportedCases: 674,
-  population: 66622705,
-  totalHospitalBeds: 1380614
-};
+
 
 function periodType(dt) {
   switch (dt.periodType) {
@@ -35,6 +23,18 @@ const covid19ImpactEstimator = (data) => {
     severeImpact // your severe case estimation
   };
 };
-
+const data = {
+  region: {
+    name: 'Africa',
+    avgAge: 19.7,
+    avgDailyIncomeInUSD: 5,
+    avgDailyIncomePopulation: 0.71
+  },
+  periodType: 'days',
+  timeToElapse: 19.7,
+  reportedCases: 674,
+  population: 66622705,
+  totalHospitalBeds: 1380614
+};
 covid19ImpactEstimator(data);
 export default covid19ImpactEstimator;
