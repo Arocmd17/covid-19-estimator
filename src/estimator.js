@@ -12,17 +12,17 @@ const data = {
   totalHospitalBeds: 1380614
 };
 
-function periodType(data) {
-  switch (data.periodType) {
+function periodType(dt) {
+  switch (dt.periodType) {
     case 'days':
-      return Math.ceil(data.timeToElapse / 3);
+      return Math.ceil(dt.timeToElapse / 3);
     case 'weeks':
-      return Math.ceil(data.timeToElapse / 3) * 7;
+      return Math.ceil(dt.timeToElapse / 3) * 7;
     case 'months':
-      return Math.ceil(data.timeToElapse / 3) * 30;
+      return Math.ceil(dt.timeToElapse / 3) * 30;
     default:
       return 'NIL';
-      break;
+      
   }
 }
 const covid19ImpactEstimator = (data) => {
