@@ -39,32 +39,44 @@ const covid19ImpactEstimator = (data) => {
   // challenge one
   impact.currentlyInfected = reportedCases * 10;
   impact.infectionsByRequestedTime = calculateInfectionsByRequestedTime(
-    impact.currentlyInfected); // the best case estimation
+    impact.currentlyInfected
+    ); // the best case estimation
   severeImpact.currentlyInfected = reportedCases * 50;
   severeImpact.infectionsByRequestedTime = calculateInfectionsByRequestedTime(
-    severeImpact.currentlyInfected); // the severe case estimation
+    severeImpact.currentlyInfected
+    ); // the severe case estimation
   // challenge two
   impact.severeCasesByRequestedTime = Math.trunc(
-    impact.infectionsByRequestedTime * 0.15); // Round up the outcome
+    impact.infectionsByRequestedTime * 0.15
+    ); // Round up the outcome
   impact.hospitalBedsByRequestedTime = calculateAvailableBeds(
-    impact.severeCasesByRequestedTime); // the best case estimation
-   severeImpact.severeCasesByRequestedTime = Math.trunc(
-     severeImpact.infectionsByRequestedTime * 0.15); // Round up the outcome
+    impact.severeCasesByRequestedTime
+    ); // the best case estimation
+  severeImpact.severeCasesByRequestedTime = Math.trunc(
+    severeImpact.infectionsByRequestedTime * 0.15
+    ); // Round up the outcome
   severeImpact.hospitalBedsByRequestedTime = calculateAvailableBeds(
-    severeImpact.severeCasesByRequestedTime); // the severe case estimation
+    severeImpact.severeCasesByRequestedTime
+    ); // the severe case estimation
   // challenge three
   impact.casesForICUByRequestedTime = Math.trunc(
-    impact.infectionsByRequestedTime * 0.05); // Round up the outcome
+    impact.infectionsByRequestedTime * 0.05
+    ); // Round up the outcome
   impact.casesForVentilatorsByRequestedTime = Math.trunc(
-    impact.infectionsByRequestedTime * 0.02); // Round up the outcome
+    impact.infectionsByRequestedTime * 0.02
+    ); // Round up the outcome
   impact.dollarsInFlight = calculateDollarsInFlight(
-    impact.infectionsByRequestedTime); // the best case estimation
+    impact.infectionsByRequestedTime
+    ); // the best case estimation
   severeImpact.casesForICUByRequestedTime = Math.trunc(
-    severeImpact.infectionsByRequestedTime * 0.05); // Round up the outcome
+    severeImpact.infectionsByRequestedTime * 0.05
+    ); // Round up the outcome
   severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(
-    severeImpact.infectionsByRequestedTime * 0.02); // Round up the outcome
+    severeImpact.infectionsByRequestedTime * 0.02
+    ); // Round up the outcome
   severeImpact.dollarsInFlight = calculateDollarsInFlight(
-    severeImpact.infectionsByRequestedTime); // the severe case estimation
+    severeImpact.infectionsByRequestedTime
+    ); // the severe case estimation
   return {
     data, // the input data you got
     impact, // your best case estimation
