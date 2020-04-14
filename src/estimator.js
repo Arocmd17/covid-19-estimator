@@ -1,14 +1,13 @@
 const covid19ImpactEstimator = (data) => {
   // Destructuring the given data
   const {
-    region: { /* avgDailyIncomeInUSD, avgDailyIncomePopulation */ },
+    region: { avgDailyIncomeInUSD, avgDailyIncomePopulation  },
     periodType,
-    reportedCases,
+    reportedCases
     /* totalHospitalBeds */
   } = data;
 
   let { timeToElapse } = data;
-  
   if (periodType === 'months') {
     timeToElapse = Math.trunc(timeToElapse * 30);
   } else if (periodType === 'weeks') {
@@ -22,8 +21,6 @@ const covid19ImpactEstimator = (data) => {
     const factor = Math.trunc(timeToElapse / 3);
     return currentlyInfected * 2 ** factor;
   };
-
- 
   // the best case estimation
   const impact = {};
   // challenge 1
@@ -47,5 +44,4 @@ const covid19ImpactEstimator = (data) => {
     severeImpact // your severe case estimation
   };
 };
-
 export default covid19ImpactEstimator;
