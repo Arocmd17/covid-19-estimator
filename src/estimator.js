@@ -1,40 +1,51 @@
-
-
-function periodType(dt) {
-  switch (dt.periodType) {
-    case 'days':
-      return Math.ceil(dt.timeToElapse / 3);
-    case 'weeks':
-      return Math.ceil(dt.timeToElapse / 3) * 7;
-    case 'months':
-      return Math.ceil(dt.timeToElapse / 3) * 30;
-    default:
-      return 'NIL';
-  }
-}
 const covid19ImpactEstimator = (data) => {
-  const infectionsByRequestedTime = periodType(data);
-  // const input = data;
-  const impact = data.reportedCases * 10 * 2 ** infectionsByRequestedTime;
-  const severeImpact = data.reportedCases * 50 * 2 ** infectionsByRequestedTime;
+  // Destructuring the given data
+  const {
+    region: { /* avgDailyIncomeInUSD, avgDailyIncomePopulation */ },
+    periodType,
+    reportedCases,
+    /* totalHospitalBeds */
+  } = data;
+
+  let { timeToElapse } = data;
+  
+  if (periodType === 'months') {
+    timeToElapse = Math.trunc(timeToElapse * 30);
+  } else if (periodType === 'weeks') {
+    timeToElapse = Math.trunc(timeToElapse * 7);
+  } else {
+    timeToElapse = Math.trunc(timeToElapse * 1);
+  }
+
+  // InfectionsByRequestedTime
+  const calculateInfectionsByElapsedTime = (currentlyInfected) => {
+    const factor = Math.trunc(timeToElapse / 3);
+    return currentlyInfected * 2 ** factor;
+  };
+
+ 
+  // the best case estimation
+  const impact = {};
+  // challenge 1
+  impact.currentlyInfected = reportedCases * 10;
+  impact.infectionsByRequestedTime = calculateInfectionsByElapsedTime(
+    impact.currentlyInfected
+  );
+
+
+  // the severe case estimation
+  const severeImpact = {};
+  // challenge 1
+  severeImpact.currentlyInfected = reportedCases * 50;
+  severeImpact.infectionsByRequestedTime = calculateInfectionsByElapsedTime(
+    severeImpact.currentlyInfected
+  );
+  
   return {
     data, // the input data you got
     impact, // your best case estimation
     severeImpact // your severe case estimation
   };
 };
-const data = {
-  region: {
-    name: 'Africa',
-    avgAge: 19.7,
-    avgDailyIncomeInUSD: 5,
-    avgDailyIncomePopulation: 0.71
-  },
-  periodType: 'days',
-  timeToElapse: 19.7,
-  reportedCases: 674,
-  population: 66622705,
-  totalHospitalBeds: 1380614
-};
-covid19ImpactEstimator(data);
+
 export default covid19ImpactEstimator;
